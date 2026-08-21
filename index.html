@@ -1,0 +1,369 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Handyman Professionals and Construction</title>
+    <style>
+      :root{
+        --bg:#1A1D20;
+        --panel:#232629;
+        --muted:#AAB0B6;
+        --accent:#1E88E5;
+        --white:#ffffff;
+        --glass: rgba(255,255,255,0.03);
+        --card-hover: rgba(30,136,229,0.08);
+        --max-width:1200px;
+        --radius:10px;
+      }
+      *{box-sizing:border-box}
+      html,body{height:100%}
+      body{
+        margin:0;
+        font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+        background:var(--bg);
+        color:var(--white);
+        -webkit-font-smoothing:antialiased;
+        -moz-osx-font-smoothing:grayscale;
+        line-height:1.4;
+      }
+      a{color:inherit;text-decoration:none}
+      .container{max-width:var(--max-width);margin:0 auto;padding:24px}
+
+      /* Header */
+      header{position:sticky;top:0;z-index:60;background:linear-gradient(180deg, rgba(26,29,32,0.9), rgba(26,29,32,0.65));backdrop-filter:blur(6px);border-bottom:1px solid rgba(255,255,255,0.03)}
+      .nav{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:12px 16px}
+      .brand{display:flex;align-items:center;gap:12px}
+      .logo{width:44px;height:44px;background:linear-gradient(135deg,var(--accent),#1466b9);border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:700;color:var(--white);box-shadow:0 4px 18px rgba(0,0,0,0.6)}
+      .brand h1{font-size:16px;margin:0}
+      nav ul{display:flex;gap:12px;margin:0;padding:0;list-style:none;align-items:center}
+      nav a{padding:8px 12px;border-radius:8px;color:var(--muted);font-weight:600}
+      nav a:hover{color:var(--white);background:var(--glass)}
+      .cta{background:var(--accent);color:var(--white);padding:10px 14px;border-radius:10px;font-weight:700;box-shadow:0 6px 20px rgba(30,136,229,0.12)}
+
+      /* Hero */
+      .hero{padding:56px 16px 40px}
+      .hero-grid{display:grid;grid-template-columns:1fr 420px;gap:32px;align-items:center}
+      .hero h2{font-size:28px;margin:0 0 8px}
+      .sub{color:var(--muted);margin-bottom:18px}
+      .hero .primary-cta{display:inline-block;background:var(--accent);color:var(--white);padding:14px 18px;border-radius:12px;font-weight:700;box-shadow:0 10px 30px rgba(30,136,229,0.12)}
+      .hero .primary-cta:hover{transform:translateY(-2px);transition:transform 200ms}
+      .hero-card{background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);border-radius:12px;padding:18px;border:1px solid rgba(255,255,255,0.03)}
+
+      /* Services */
+      .tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px}
+      .tab{background:transparent;padding:8px 12px;border-radius:999px;border:1px solid rgba(255,255,255,0.03);color:var(--muted);cursor:pointer}
+      .tab.active{background:var(--accent);color:var(--white);border-color:transparent}
+      .services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+      .service-card{background:var(--panel);padding:14px;border-radius:12px;border:1px solid rgba(255,255,255,0.02);transition:transform 220ms, box-shadow 220ms;cursor:default}
+      .service-card:hover{transform:translateY(-6px);box-shadow:0 18px 50px rgba(0,0,0,0.5);background:linear-gradient(180deg, rgba(30,136,229,0.03), var(--panel))}
+      .service-card h4{margin:0 0 8px;font-size:15px}
+      .service-list{list-style:none;padding:0;margin:0;display:grid;gap:6px}
+      .service-item{color:var(--muted);font-size:14px;padding:8px;border-radius:8px}
+      .service-item:hover{color:var(--white);background:var(--card-hover)}
+      .search-wrap{display:flex;gap:8px;margin-bottom:12px}
+      .search{flex:1;padding:10px;border-radius:10px;border:1px solid rgba(255,255,255,0.03);background:transparent;color:var(--white)}
+
+      /* Hours */
+      .hours{display:flex;gap:18px;flex-wrap:wrap}
+      .hours-card{background:var(--panel);padding:16px;border-radius:12px;min-width:260px;border:1px solid rgba(255,255,255,0.03)}
+      .hours table{width:100%;border-collapse:collapse}
+      .hours td{padding:6px 4px;color:var(--muted)}
+      .hours td.day{color:var(--white);font-weight:600;width:45%}
+
+      /* Contact */
+      .contact-grid{display:grid;grid-template-columns:1fr 420px;gap:24px}
+      .contact-card{background:var(--panel);padding:18px;border-radius:12px;border:1px solid rgba(255,255,255,0.03)}
+      .field{display:flex;flex-direction:column;margin-bottom:12px}
+      label{font-size:13px;color:var(--muted);margin-bottom:6px}
+      input,select,textarea{padding:12px;border-radius:8px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:var(--white)}
+      textarea{min-height:120px;resize:vertical}
+      .submit{background:linear-gradient(90deg,var(--accent),#1466b9);border:none;color:var(--white);padding:12px 14px;border-radius:10px;font-weight:700;cursor:pointer}
+
+      footer{padding:28px 16px;border-top:1px solid rgba(255,255,255,0.02);margin-top:40px}
+
+      /* Responsive */
+      @media (max-width:1000px){.hero-grid,.contact-grid{grid-template-columns:1fr} .services-grid{grid-template-columns:repeat(2,1fr)} }
+      @media (max-width:640px){.services-grid{grid-template-columns:1fr} nav ul{display:none} .nav{padding:10px} .logo{width:40px;height:40px}}
+    
+      body {
+  background: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)), url('bg-building.jpg') no-repeat center center fixed;
+  background-size: cover;
+  color: #ffffff;
+}
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="container nav">
+        <div class="brand">
+          <div class="logo">
+            <img src="logo.png" alt="Handyman Professionals and Construction Logo" style="height: 45px; width:auto;vertical-align:middle;">
+          </div>
+            <h1 style="font-size:14px;margin:0">Handyman Professionals</h1>
+          </div>
+        <nav>
+          <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#hours">Business Hours</a></li>
+            <li><a href="#contact">Contact</a></li>
+            <li><a class="cta" href="tel:+16143221955">Call Now</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main class="container">
+      <section id="home" class="hero">
+        <div class="hero-grid">
+          <div>
+            <h2>Reliable Handyman & Construction Services in Columbus</h2>
+            <p class="sub">Over 18 years of professional craftsmanship. From minor repairs to full home remodeling.</p>
+            <a class="primary-cta" href="tel:+16143221955">Call for an Estimate: +1 614-322-1955</a>
+
+            <div style="margin-top:18px;display:flex;gap:12px;flex-wrap:wrap">
+              <div class="hero-card">
+                <strong>Licensed & Insured</strong>
+                <p style="margin:6px 0 0;color:var(--muted)">Residential & Commercial services across Columbus.</p>
+              </div>
+              <div class="hero-card">
+                <strong>Fast Response</strong>
+                <p style="margin:6px 0 0;color:var(--muted)">Emergency repairs and scheduled projects.</p>
+              </div>
+            </div>
+          </div>
+
+          <aside>
+            <div class="hero-card">
+              <h3 style="margin:0 0 8px">Request a Quick Callback</h3>
+              <p style="color:var(--muted);margin:0 0 12px">Prefer a call? Tap below and we'll reach out promptly.</p>
+              <a class="primary-cta" href="tel:+16143221955">Call: +1 614-322-195</a>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section id="services">
+        <h3 style="margin-top:10px">Services</h3>
+        <div class="search-wrap">
+          <input id="serviceSearch" class="search" placeholder="Search services..." aria-label="Search services" />
+        </div>
+
+        <div class="tabs" role="tablist" aria-label="Service categories">
+          <button class="tab active" data-tab="general">General Repairs & Maintenance</button>
+          <button class="tab" data-tab="plumbing">Plumbing & Fixtures</button>
+          <button class="tab" data-tab="electrical">Electrical & Lighting</button>
+          <button class="tab" data-tab="carpentry">Carpentry & Installations</button>
+          <button class="tab" data-tab="remodel">Remodeling & Construction</button>
+          <button class="tab" data-tab="exterior">Exterior & Cleaning</button>
+        </div>
+
+        <div class="services">
+          <div class="services-grid" data-panel="general">
+            <div class="service-card">
+              <h4>General Repairs & Maintenance</h4>
+              <ul class="service-list">
+                <li class="service-item">General Repairs</li>
+                <li class="service-item">Home Repairs</li>
+                <li class="service-item">Emergency Repairs</li>
+                <li class="service-item">Small Electrical</li>
+                <li class="service-item">Repairs and Maintenance</li>
+                <li class="service-item">Repairs and Upkeep</li>
+                <li class="service-item">Batteries Replaced</li>
+                <li class="service-item">Drywall Repair</li>
+                <li class="service-item">Flooring Repair</li>
+                <li class="service-item">Roofing Repaired</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="services-grid" data-panel="plumbing" style="display:none">
+            <div class="service-card">
+              <h4>Plumbing & Fixtures</h4>
+              <ul class="service-list">
+                <li class="service-item">Leak Repairs</li>
+                <li class="service-item">Water Fixture Repair</li>
+                <li class="service-item">Sinks & Faucets</li>
+                <li class="service-item">Toilets Repaired</li>
+                <li class="service-item">Plumbing Fixture Installation</li>
+                <li class="service-item">Install Dishwashers</li>
+                <li class="service-item">Install Garbage Disposals</li>
+                <li class="service-item">Refrigerators Installed</li>
+                <li class="service-item">Shower Doors</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="services-grid" data-panel="electrical" style="display:none">
+            <div class="service-card">
+              <h4>Electrical & Lighting</h4>
+              <ul class="service-list">
+                <li class="service-item">Electrical Installation</li>
+                <li class="service-item">Electrical Sockets</li>
+                <li class="service-item">Light Switches</li>
+                <li class="service-item">Ceiling Lights Replaced</li>
+                <li class="service-item">Ceiling Fans / Fans Installed</li>
+                <li class="service-item">TV Mounting</li>
+                <li class="service-item">Small Electrical</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="services-grid" data-panel="carpentry" style="display:none">
+            <div class="service-card">
+              <h4>Carpentry & Installations</h4>
+              <ul class="service-list">
+                <li class="service-item">Furniture Assembly</li>
+                <li class="service-item">Cabinet Refacing</li>
+                <li class="service-item">Doors Installed</li>
+                <li class="service-item">Floor Fitting</li>
+                <li class="service-item">Porcelain Tile / Tile Flooring</li>
+                <li class="service-item">Tile Work Installation & Replacement</li>
+                <li class="service-item">Tiling Regrouted</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="services-grid" data-panel="remodel" style="display:none">
+            <div class="service-card">
+              <h4>Remodeling & Construction</h4>
+              <ul class="service-list">
+                <li class="service-item">Kitchen Remodel & Updates</li>
+                <li class="service-item">Bathroom Remodeling</li>
+                <li class="service-item">Basement Renovation</li>
+                <li class="service-item">Drywall Work & Installation</li>
+                <li class="service-item">General Construction</li>
+                <li class="service-item">Construction Work</li>
+                <li class="service-item">Home Renovations</li>
+                <li class="service-item">Home Improvements</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="services-grid" data-panel="exterior" style="display:none">
+            <div class="service-card">
+              <h4>Exterior & Cleaning</h4>
+              <ul class="service-list">
+                <li class="service-item">Exterior Painting & Interior Decorating</li>
+                <li class="service-item">Gutter Cleaning & Replaced Gutters</li>
+                <li class="service-item">Exterior Projects</li>
+                <li class="service-item">Residential & Commercial Service</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="hours" style="margin-top:28px">
+        <h3>Business Hours</h3>
+        <div class="hours">
+          <div class="hours-card">
+            <table>
+              <tbody>
+                <tr><td class="day">Monday</td><td>9:00 AM – 5:00 PM</td></tr>
+                <tr><td class="day">Tuesday</td><td>9:00 AM – 5:00 PM</td></tr>
+                <tr><td class="day">Wednesday</td><td>9:00 AM – 5:00 PM</td></tr>
+                <tr><td class="day">Thursday</td><td>9:00 AM – 5:00 PM</td></tr>
+                <tr><td class="day">Friday</td><td>9:00 AM – 4:30 PM</td></tr>
+                <tr><td class="day">Saturday</td><td>Closed</td></tr>
+                <tr><td class="day">Sunday</td><td>Closed</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <section id="contact" style="margin-top:28px">
+        <h3>Contact</h3>
+        <div class="contact-grid">
+          <div>
+            <div class="contact-card">
+              <p style="margin:0 0 8px"><strong>Phone:</strong> <a href="tel:+1614322195" style="color:var(--accent)">+1 614-322-195</a></p>
+              <p style="margin:0 0 12px"><strong>Email:</strong> <span style="color:var(--muted)">[Email Address Coming Soon]</span></p>
+              <p style="color:var(--muted);margin:0">We offer free estimates and quick scheduling. Tell us what you need.</p>
+            </div>
+          </div>
+
+          <div>
+            <form id="contactForm" class="contact-card" onsubmit="return false;">
+              <div class="field"><label for="name">Name</label><input id="name" name="name" required placeholder="Your full name" /></div>
+              <div class="field"><label for="phone">Phone Number</label><input id="phone" name="phone" required placeholder="Phone or mobile number" /></div>
+              <div class="field"><label for="service">Service Needed</label>
+                <select id="service" name="service">
+                  <option>General Repairs & Maintenance</option>
+                  <option>Plumbing & Fixtures</option>
+                  <option>Electrical & Lighting</option>
+                  <option>Carpentry & Installations</option>
+                  <option>Remodeling & Construction</option>
+                  <option>Exterior & Cleaning</option>
+                </select>
+              </div>
+              <div class="field"><label for="message">Message</label><textarea id="message" name="message" placeholder="Describe the work or ask a question"></textarea></div>
+              <div style="display:flex;justify-content:flex-end"><button class="submit" id="submitBtn">Send Request</button></div>
+              <p id="formNote" style="color:var(--muted);font-size:13px;margin-top:10px">We will contact you to confirm scheduling. This form does not store data in this demo.</p>
+            </form>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="container" style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap">
+        <div style="color:var(--muted)">© Handyman Professionals and Construction</div>
+        <div style="color:var(--muted)">Phone: <a href="tel:+1614322195" style="color:var(--accent)">+1 614-322-195</a> • Email: <span style="color:var(--muted)">[Email Address Coming Soon]</span></div>
+      </div>
+    </footer>
+
+    <script>
+      // Smooth scrolling for anchors
+      document.querySelectorAll('a[href^="#"]').forEach(a=>{
+        a.addEventListener('click',e=>{
+          const href=a.getAttribute('href');
+          if(href.length>1){
+            e.preventDefault();
+            document.querySelector(href).scrollIntoView({behavior:'smooth',block:'start'});
+          }
+        })
+      })
+
+      // Tabs
+      const tabs = document.querySelectorAll('.tab');
+      const panels = document.querySelectorAll('[data-panel]');
+      tabs.forEach(t=>t.addEventListener('click', ()=>{
+        tabs.forEach(x=>x.classList.remove('active'));
+        t.classList.add('active');
+        const key = t.dataset.tab;
+        panels.forEach(p=>p.style.display = (p.dataset.panel === key) ? 'grid' : 'none');
+        // reset search
+        document.getElementById('serviceSearch').value='';
+      }));
+
+      // Search filter within active panel
+      const search = document.getElementById('serviceSearch');
+      search.addEventListener('input', ()=>{
+        const q = search.value.trim().toLowerCase();
+        const active = Array.from(panels).find(p=>p.style.display !== 'none');
+        if(!active) return;
+        active.querySelectorAll('.service-item').forEach(item=>{
+          const text = item.textContent.toLowerCase();
+          item.style.display = text.includes(q) ? '' : 'none';
+        })
+      })
+
+      // Contact form demo handling
+      document.getElementById('submitBtn').addEventListener('click', ()=>{
+        const name = document.getElementById('name').value.trim();
+        const phone = document.getElementById('phone').value.trim();
+        const service = document.getElementById('service').value;
+        if(!name||!phone){
+          alert('Please provide your name and phone number.');
+          return;
+        }
+        // In a real site, submit via fetch to backend. Here we mock success.
+        alert('Thanks, '+name+'! We will call you about: '+service);
+        document.getElementById('contactForm').reset();
+      })
+    </script>
+  </body>
+</html>
